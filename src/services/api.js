@@ -1,7 +1,14 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const djangoApi = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api/',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+export const nodeApi = axios.create({
+    baseURL: import.meta.env.VITE_NODE_URL || 'http://localhost:5000',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -28,4 +35,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api;
+export default djangoApi;
