@@ -52,7 +52,7 @@ const MainLayout = () => {
                         <Link to="/" className="hover:text-blue-500 transition-colors">Dashboard</Link>
                         <Link to="/events" className="hover:text-blue-500 transition-colors">Events</Link>
                         <Link to="/participants" className="hover:text-blue-500 transition-colors">Participants</Link>
-                        <Link to="/node-stats" className="hover:text-blue-500 font-bold transition-colors flex items-center gap-1">Node Stats</Link>
+                        <Link to="/node-stats" className="hover:text-blue-500 transition-colors flex items-center gap-1">Node Stats</Link>
                         <div className="border-l border-brand-border pl-6 flex items-center gap-4">
                             <button
                                 onClick={() => setIsDarkMode(!isDarkMode)}
@@ -83,7 +83,7 @@ const MainLayout = () => {
                         <Link to="/" onClick={() => setMenuOpen(false)} className="font-bold py-2 border-b border-brand-border/50">Dashboard</Link>
                         <Link to="/events" onClick={() => setMenuOpen(false)} className="font-bold py-2 border-b border-brand-border/50">Events</Link>
                         <Link to="/participants" onClick={() => setMenuOpen(false)} className="font-bold py-2 border-b border-brand-border/50">Participants</Link>
-                        <Link to="/node-stats" onClick={() => setMenuOpen(false)} className="font-bold py-2 border-b border-brand-border/50 text-indigo-600 dark:text-indigo-400">Node Stats</Link>
+                        <Link to="/node-stats" onClick={() => setMenuOpen(false)} className="font-bold py-2 border-b border-brand-border/50">Node Stats</Link>
                         
                         <div className="flex flex-wrap items-center gap-3 pt-2">
                             <button
