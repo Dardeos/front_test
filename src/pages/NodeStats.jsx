@@ -44,7 +44,7 @@ const NodeStats = () => {
         setFormData({
             title: event.title,
             description: event.description || '',
-            date: event.date ? event.date.split('T') : '', // Fixed split
+            date: event.date ? event.date.split('T')[0] : '', // Fixed split
             status: event.status
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
