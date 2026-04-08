@@ -13,7 +13,8 @@ const EventDetails = () => {
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const myRegistration = registrations.find(r => r.participant === myParticipant?.id);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -155,8 +156,17 @@ const EventDetails = () => {
 
                     {user?.role === 'viewer' ? (
                         isAlreadyRegistered ? (
-                            <div className="text-center py-4">
-                                <span className="text-green-500 font-bold text-lg">You are registered!</span>
+                            <div className="flex flex-col gap-4 text-center">
+                                <div className="py-2">
+                                    <span className="text-green-500 font-bold text-lg">You are registered!</span>
+                                </div>
+                                {/* NEW LEAVE BUTTON */}
+                                <button 
+                                    onClick={() => handleDeleteRegistration(myRegistration?.id)}
+                                    className="text-red-500 hover:text-red-600 font-semibold text-sm hover:underline transition-all"
+                                >
+                                    Leave this event
+                                </button>
                             </div>
                         ) : (
                             <div className="flex flex-col gap-4 text-center">

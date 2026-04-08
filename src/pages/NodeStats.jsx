@@ -57,7 +57,7 @@ const NodeStats = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!canManage) return alert("Unauthorized"); // Guard clause
+        if (!canManage) return alert("Unauthorized");  
 
         try {
             if (editingId) {
