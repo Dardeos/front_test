@@ -14,6 +14,7 @@ import EventDetails from './pages/Events/EventDetails';
 import EventForm from './pages/Events/EventForm';
 import ParticipantList from './pages/Participants/ParticipantList';
 import ParticipantForm from './pages/Participants/ParticipantForm';
+import NodeStats from './pages/NodeStats';
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
@@ -52,6 +53,7 @@ function App() {
                         <Route path="participants" element={<ParticipantList />} />
                         <Route path="participants/new" element={<ParticipantForm />} />
                         <Route path="participants/edit/:id" element={<ParticipantForm />} />
+                        <Route path="node-stats" element={<NodeStats />} />
                     </Route>
                     <Route path="*" element={<div>404</div>} />
                 </Routes>
