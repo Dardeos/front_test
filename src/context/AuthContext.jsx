@@ -1,3 +1,4 @@
+// Manages global authentication state and validates JWT token expiration
 import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import api from '../services/api';
@@ -14,7 +15,6 @@ export const AuthProvider = ({ children }) => {
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-
                 const isExpired = decoded.exp * 1000 < Date.now();
 
                 if (isExpired) {

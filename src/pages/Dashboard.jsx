@@ -22,6 +22,7 @@ const Dashboard = () => {
             setError(null);
 
             try {
+                // Fetches event and participant totals concurrently using Promise.all
                 const [eventsRes, participantsRes] = await Promise.all([
                     api.get('/events/'),
                     api.get('/participants/')
@@ -42,7 +43,7 @@ const Dashboard = () => {
         };
 
         fetchStats();
-    }, [authLoading, user]); // 🔥 important
+    }, [authLoading, user]); 
 
     if (authLoading) {
         return <p className="p-6">Loading user...</p>;
@@ -69,7 +70,6 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                {/* Events */}
                 <div className="bg-white p-6 rounded shadow border-t-4 border-blue-500">
                     <h2 className="text-xl font-bold text-gray-700 mb-2">
                         Total Events
@@ -87,7 +87,6 @@ const Dashboard = () => {
                     </Link>
                 </div>
 
-                {/* Participants */}
                 <div className="bg-white p-6 rounded shadow border-t-4 border-green-500">
                     <h2 className="text-xl font-bold text-gray-700 mb-2">
                         Total Participants

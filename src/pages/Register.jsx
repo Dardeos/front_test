@@ -13,6 +13,7 @@ const Register = () => {
     e.preventDefault();
     setError('');
     try {
+      // Sends registration data to the backend and redirects to login on success
       await api.post('/register/', formData);
       alert('Account created! Please log in.');
       navigate('/login');
@@ -26,10 +27,8 @@ const Register = () => {
   };
 
   return (
-    /* Outer container: Uses brand-bg to stay dark when theme is dark */
     <div className="flex min-h-screen w-full bg-brand-bg transition-colors duration-300">
       
-      {/* LEFT SIDE: Branding */}
       <div className="hidden lg:flex flex-col justify-center items-center lg:w-1/2 bg-blue-900 relative">
         <div className="absolute inset-0 bg-cover bg-center opacity-40"></div>
         <div className="relative z-10 text-center px-12">
@@ -40,7 +39,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE: The Form - Using brand-bg */}
       <div className="flex flex-col justify-center items-center w-full lg:w-1/2 p-8 sm:p-12 md:p-20 bg-brand-bg">
 
         <div className="w-full max-w-md">
@@ -56,7 +54,6 @@ const Register = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Username Group */}
             <div>
               <label htmlFor="username" className="block mb-2 text-sm font-bold text-brand-text uppercase tracking-wider opacity-70">
                 Username
@@ -67,13 +64,11 @@ const Register = () => {
                 type="text"
                 placeholder="john_doe"
                 onChange={handleChange}
-                /* Switched to brand-card and brand-border */
                 className="block w-full p-3 rounded-lg border border-brand-border bg-brand-card text-brand-text placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                 required
               />
             </div>
 
-            {/* Email Group */}
             <div>
               <label htmlFor="email" className="block mb-2 text-sm font-bold text-brand-text uppercase tracking-wider opacity-70">
                 Email Address
@@ -89,7 +84,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Password Group */}
             <div>
               <label htmlFor="password" className="block mb-2 text-sm font-bold text-brand-text uppercase tracking-wider opacity-70">
                 Password
@@ -105,7 +99,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white font-bold text-lg py-3 rounded-lg hover:bg-blue-700 shadow-lg transform transition active:scale-[0.98] mt-2"
@@ -114,7 +107,6 @@ const Register = () => {
             </button>
           </form>
 
-          {/* Footer Link */}
           <p className="mt-8 text-center text-sm text-brand-text">
             Already have an account?{" "}
             <Link to="/login" className="font-bold text-blue-600 hover:underline transition-colors">

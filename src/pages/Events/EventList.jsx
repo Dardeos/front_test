@@ -9,7 +9,6 @@ const EventList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     
-    // Filters
     const [statusFilter, setStatusFilter] = useState('');
     const [dateFilter, setDateFilter] = useState('');
 
@@ -27,11 +26,11 @@ const EventList = () => {
                 if (parts.length === 3) {
                     params.date = `${parts[2]}-${parts[1]}-${parts[0]}`;
                 } else {
-                    params.date = dateFilter; // fallback
+                    params.date = dateFilter; 
                 }
             }
 
-
+            // Retrieves the list of events from the API applying active status and date filters
             const response = await api.get('/events/', { params });
             setEvents(response.data || []);
             setError(null);
@@ -66,7 +65,6 @@ const EventList = () => {
                 )}
             </div>
 
-            {/* FILTERS - Updated with Brand Colors */}
             <div className="flex flex-wrap gap-4 mb-8 bg-brand-card p-4 rounded-xl border border-brand-border shadow-sm">
                 <div className="flex flex-col">
                     <label className="text-sm font-bold opacity-70 mb-1">Status</label>
@@ -91,7 +89,6 @@ const EventList = () => {
                             onChange={(e) => setDateFilter(e.target.value)} 
                             className="p-2 rounded-lg bg-brand-bg border border-brand-border text-brand-text outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        {/* Adding a clear button because native date pickers are annoying to clear */}
                         {dateFilter && (
                             <button onClick={() => setDateFilter('')} className="px-3 py-2 bg-red-500/10 text-red-500 rounded-lg hover:bg-red-500/20 font-bold transition">
                                 Clear

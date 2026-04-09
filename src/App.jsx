@@ -1,13 +1,12 @@
+// Main application router implementing protected routes and rendering logic
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 
-// Layouts & Auth
 import MainLayout from './layouts/MainLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-// Pages
 import Dashboard from './pages/Dashboard';
 import EventList from './pages/Events/EventList';
 import EventDetails from './pages/Events/EventDetails';
@@ -35,21 +34,17 @@ function App() {
         <AuthProvider>
             <Router>
                 <Routes>
-                    {/* Public Routes */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     
-                    {/* Protected Routes */}
                     <Route path="/" element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
                         <Route index element={<Dashboard />} />
                         
-                        {/* Event Routes */}
                         <Route path="events" element={<EventList />} />
                         <Route path="events/new" element={<EventForm />} />
                         <Route path="events/edit/:id" element={<EventForm />} />
                         <Route path="events/:id" element={<EventDetails />} />
 
-                        {/* Participant Routes */}
                         <Route path="participants" element={<ParticipantList />} />
                         <Route path="participants/new" element={<ParticipantForm />} />
                         <Route path="participants/edit/:id" element={<ParticipantForm />} />

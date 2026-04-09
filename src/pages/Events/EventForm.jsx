@@ -18,7 +18,6 @@ const EventForm = () => {
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState(null);
 
-    // Fetch the event data ONLY if we are in Edit Mode
     useEffect(() => {
         if (isEditMode) {
             const fetchEvent = async () => {
@@ -26,22 +25,14 @@ const EventForm = () => {
                     const response = await api.get(`/events/${id}/`);
                     const eventData = response.data;
                     
-                    // --- THE FIX IS HERE ---
                     let formattedDate = '';
                     if (eventData.date) {
-                        // Create a Date object from the string Django sent
                         const dateObj = new Date(eventData.date);
-                        
-                        // Extract YYYY, MM, and DD
                         const year = dateObj.getUTCFullYear();
                         const month = String(dateObj.getUTCMonth() + 1).padStart(2, '0');
                         const day = String(dateObj.getUTCDate()).padStart(2, '0');
                         
-                        // Combine into the required YYYY-MM-DD format
                         formattedDate = `${year}-${month}-${day}`;
-                        
-                        // Alternative shortcut if you trust the string format:
-                        // formattedDate = eventData.date.split('T'); 
                     }
                     
                     setFormData({
@@ -75,10 +66,8 @@ const EventForm = () => {
 
         try {
             if (isEditMode) {
-                // UPDATE existing event (PUT or PATCH)
                 await api.put(`/events/${id}/`, formData);
             } else {
-                // CREATE new event (POST)
                 await api.post('/events/', formData);
             }
             navigate('/events');

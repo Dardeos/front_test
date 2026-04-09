@@ -39,17 +39,12 @@ const EventDetails = () => {
     }, [id]);
 
 
-    // 1. First, find "Who am I?"
     const myParticipant = participants.find(p => 
         p.name?.toLowerCase() === user?.username?.toLowerCase()
     );
-
-    // 2. Second, find "Am I registered?"
     const isAlreadyRegistered = myParticipant 
         ? registrations.some(r => r.participant === myParticipant.id)
         : false;
-
-    // 3. Third, find the specific registration ID (the link) so we can delete it later
     const myRegistration = registrations.find(r => r.participant === myParticipant?.id);
         
     if (authLoading || loading) {
@@ -62,8 +57,6 @@ const EventDetails = () => {
     const handleRegister = async (e, participantId = null) => {
         if (e) e.preventDefault();
         setMessage(null);
-
-        // If a participantId is passed (for viewers), use it. Otherwise use the dropdown state.
         const idToRegister = participantId || selectedParticipant;
 
         if (!idToRegister) {
@@ -153,14 +146,12 @@ const EventDetails = () => {
                         </div>
                     )}
 
-
                     {user?.role === 'viewer' ? (
                         isAlreadyRegistered ? (
                             <div className="flex flex-col gap-4 text-center">
                                 <div className="py-2">
                                     <span className="text-green-500 font-bold text-lg">You are registered!</span>
                                 </div>
-                                {/* NEW LEAVE BUTTON */}
                                 <button 
                                     onClick={() => handleDeleteRegistration(myRegistration?.id)}
                                     className="text-red-500 hover:text-red-600 font-semibold text-sm hover:underline transition-all"

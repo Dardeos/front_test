@@ -1,3 +1,5 @@
+// Configures Axios instances for Django and Node backends
+// Injects JWT tokens into requests and handles 401 unauth responses
 import axios from 'axios';
 
 export const api = axios.create({

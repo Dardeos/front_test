@@ -13,6 +13,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
+      // Submits credentials to the AuthContext provider and redirects on success
       await login(username, password);
       navigate('/');
     } catch {
@@ -21,10 +22,8 @@ const Login = () => {
   };
 
   return (
-    /* Outer wrapper: Full screen flex - Using brand-bg */
     <div className="flex min-h-screen w-full bg-brand-bg transition-colors duration-300">
       
-      {/* LEFT SIDE: Branding (Hidden on mobile) */}
       <div className="hidden lg:flex w-1/2 bg-blue-700 items-center justify-center p-12">
         <div className="max-w-md text-white">
           <h1 className="text-5xl font-black mb-6 tracking-tight">Welcome Back</h1>
@@ -34,7 +33,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE: The Form - Using brand-bg or brand-card */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-brand-bg">
         <div className="w-full max-w-md">
           
@@ -51,7 +49,6 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             
-            {/* Username */}
             <div className="flex flex-col gap-2">
               <label htmlFor="username" className="text-sm font-bold text-brand-text uppercase tracking-wider opacity-70">
                 Username
@@ -61,14 +58,12 @@ const Login = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                /* Changed bg-gray-50 to brand-card and added placeholder styling */
                 className="w-full p-4 bg-brand-card border border-brand-border rounded-xl text-brand-text placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none shadow-sm"
                 placeholder="Enter your username"
                 required
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
                 <label htmlFor="password" className="text-sm font-bold text-brand-text uppercase tracking-wider opacity-70">
@@ -80,7 +75,6 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                /* Changed bg-gray-50 to brand-card */
                 className="w-full p-4 bg-brand-card border border-brand-border rounded-xl text-brand-text placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none shadow-sm"
                 placeholder="••••••••"
                 required

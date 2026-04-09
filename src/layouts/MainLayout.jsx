@@ -1,3 +1,4 @@
+// Primary layout wrapper handling responsive navigation, theme toggling, and nested route rendering
 import { useContext, useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -5,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 const MainLayout = () => {
     const { user, logout, loading } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [menuOpen, setMenuOpen] = useState(false); // Mobile menu toggle
+    const [menuOpen, setMenuOpen] = useState(false); 
     
     const [isDarkMode, setIsDarkMode] = useState(() => {
         return localStorage.getItem('theme') === 'dark';
@@ -34,12 +35,10 @@ const MainLayout = () => {
             
             <nav className="bg-brand-card border-b border-brand-border p-4 shadow-sm transition-colors duration-300 relative z-50">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    {/* LOGO */}
                     <div className="text-xl font-black tracking-wider text-blue-600 dark:text-blue-400">
                         <Link to="/">EventHub</Link>
                     </div>
 
-                    {/* MOBILE HAMBURGER BUTTON */}
                     <button 
                         className="md:hidden p-2 rounded-lg border border-brand-border"
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -47,7 +46,6 @@ const MainLayout = () => {
                         {menuOpen ? '✕' : '☰'}
                     </button>
 
-                    {/* DESKTOP MENU (Hidden on Mobile) */}
                     <div className="hidden md:flex gap-6 items-center font-medium">
                         <Link to="/" className="hover:text-blue-500 transition-colors">Dashboard</Link>
                         <Link to="/events" className="hover:text-blue-500 transition-colors">Events</Link>

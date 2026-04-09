@@ -1,16 +1,16 @@
-import { useEffect, useState, useContext } from 'react'; // Added useContext
+import { useEffect, useState, useContext } from 'react'; 
 import { nodeApi } from '../services/api';
-import { AuthContext } from '../context/AuthContext'; // Import your context
+import { AuthContext } from '../context/AuthContext'; 
 import { Link } from 'react-router-dom';
 
 const NodeStats = () => {
-    const { user } = useContext(AuthContext); // Get user role
+    const { user } = useContext(AuthContext); 
     const [events, setEvents] = useState([]);
     const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [editingId, setEditingId] = useState(null);
 
-    // Permission Check Helper
+    // Determines if the current user has write-access based on their role
     const canManage = user?.role === 'admin' || user?.role === 'editor';
 
     const [formData, setFormData] = useState({
@@ -40,12 +40,12 @@ const NodeStats = () => {
     }, []);
 
     const startEdit = (event) => {
-        if (!canManage) return; // Guard clause
+        if (!canManage) return; 
         setEditingId(event.id);
         setFormData({
             title: event.title,
             description: event.description || '',
-            date: event.date ? event.date.split('T')[0] : '', // Fixed split
+            date: event.date ? event.date.split('T')[0] : '', 
             status: event.status
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -92,7 +92,6 @@ const NodeStats = () => {
         <div className="p-6 space-y-8">
             <h1 className="text-3xl font-black mb-6 text-brand-text">Node Technical Dashboard</h1>
 
-            {/* --- STATS TILES --- */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <StatCard label="Total" value={stats?.total} color="blue" />
                 <StatCard label="Upcoming" value={stats?.upcoming} color="yellow" />
@@ -100,7 +99,6 @@ const NodeStats = () => {
                 <StatCard label="Finished" value={stats?.finished} color="red" />
             </div>
 
-            {/* --- FORM (CREATE & UPDATE) - Only visible to authorized users --- */}
             {canManage && (
                 <div className={`p-6 rounded-xl border transition-colors ${editingId ? 'border-blue-500 bg-blue-500/5' : 'bg-brand-card border-brand-border'}`}>
                     <h2 className="text-xl font-bold text-brand-text mb-4">
@@ -152,7 +150,6 @@ const NodeStats = () => {
                 </div>
             )}
 
-            {/* --- CRUD LIST TABLE --- */}
             <div className="overflow-x-auto bg-brand-card border border-brand-border rounded-xl">
                 <table className="w-full text-left border-collapse">
                     <thead>

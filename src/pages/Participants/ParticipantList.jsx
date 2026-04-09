@@ -6,8 +6,8 @@ import { AuthContext } from '../../context/AuthContext';
 const ParticipantList = () => {
     const { user } = useContext(AuthContext);
     const [participants, setParticipants] = useState([]);
-    const [editingId, setEditingId] = useState(null); // Tracks which ID is being edited
-    const [editData, setEditData] = useState({ name: '', email: '' }); // Stores temporary changes
+    const [editingId, setEditingId] = useState(null); 
+    const [editData, setEditData] = useState({ name: '', email: '' }); 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -25,7 +25,6 @@ const ParticipantList = () => {
         }
     };
 
-    // --- EDIT ACTIONS ---
     const startEdit = (p) => {
         setEditingId(p.id);
         setEditData({ name: p.name, email: p.email });
@@ -84,7 +83,6 @@ const ParticipantList = () => {
                             {participants.map((p) => (
                                 <tr key={p.id} className="hover:bg-brand-bg/30 transition-colors border-b border-brand-border last:border-0">
                                     {editingId === p.id ? (
-                                        /* --- EDIT MODE ROW --- */
                                         <>
                                             <td className="p-4">
                                                 <input 
@@ -106,7 +104,6 @@ const ParticipantList = () => {
                                             </td>
                                         </>
                                     ) : (
-                                        /* --- VIEW MODE ROW --- */
                                         <>
                                             <td className="p-4 font-medium">{p.name}</td>
                                             <td className="p-4 opacity-80">{p.email}</td>
